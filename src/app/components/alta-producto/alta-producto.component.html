@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Producto</h2>
+  </div>
+
+  <div class="row g-1">
+    <div class="col">
+      <h4>Ingresar datos</h4>
+
+      <form
+        [formGroup]="productoForm"
+        (ngSubmit)="onSubmit()"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="nombre"
+              formControlName="nombre"
+              required
+            />
+            @if (productoForm.get('nombre')!.invalid && productoForm.get('nombre')!.touched) {
+                <div class="invalid-feedback">Es requerido.</div>
+            }
+          </div>
+
+          <div class="col-12">
+            <label for="precio" class="form-label">Precio</label>
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="precio"
+              formControlName="precio"
+              required
+            />
+            @if (productoForm.get('precio')!.invalid && productoForm.get('precio')!.touched) {
+                <div class="invalid-feedback">
+                Es requerido
+                </div>
+            }
+          </div>
+
+          <div class="col-12">
+            <label for="categoria" class="form-label">Categoria</label>
+            <div class="input-group has-validation">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="categoria"
+                formControlName="categoria"
+                placeholder="Categoria"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="codigoBarras" class="form-label"
+              >Codigo de Barras</label
+            >
+            <div class="input-group input-group-sm">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="codigoBarras"
+                formControlName="codigoBarras"
+              />
+              <button
+                class="btn btn-outline-primary"
+                type="button"
+                id="button-addon2"
+                style="padding: 0em 0.5em"
+                (click)="leerCodigoBarras()"
+              >
+                <i class="bi bi-qr-code" style="font-size: 1.25em"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="descripcion"
+              formControlName="descripcion"
+            />
+          </div>
+
+          <div class="col-12">
+            <label for="estado" class="form-label">Estado</label>
+            <select
+              class="form-select form-select-sm"
+              id="estado"
+              formControlName="estado"
+              required
+            >
+              <option value="DISPONIBLE">Disponible</option>
+              <option value="ENPEDIDO">En pedido</option>
+              <option value="INACTIVO">Inactivo</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
