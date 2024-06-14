@@ -33,6 +33,7 @@ export class AltaProductoComponent implements OnInit {
     this.scannedCode = code;
     this.productoForm.patchValue({ codigoBarras: code });
     this.scanning = false;
+    alert(code)
   }
 
   leerCodigoBarras() {
