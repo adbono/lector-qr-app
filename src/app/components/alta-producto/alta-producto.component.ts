@@ -1,15 +1,19 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BarcodeScannerComponent } from '../barcode-scanner/barcode-scanner.component';
 
 @Component({
   selector: 'app-alta-producto',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BarcodeScannerComponent],
   templateUrl: './alta-producto.component.html',
   styleUrl: './alta-producto.component.scss'
 })
 export class AltaProductoComponent implements OnInit {
   productoForm!: FormGroup;
+  scanning: boolean = false;
+  scannedCode: string = '';
+
   private fb = inject(FormBuilder)
 
   constructor() {}
@@ -25,8 +29,14 @@ export class AltaProductoComponent implements OnInit {
     });
   }
 
-  leerCodigoBarras(){
-    console.log("leerCodigoBarras")
+  onScanSuccess(code: string) {
+    this.scannedCode = code;
+    this.productoForm.patchValue({ codigoBarras: code });
+    this.scanning = false;
+  }
+
+  leerCodigoBarras() {
+    this.scanning = true;
   }
 
   onSubmit(): void {

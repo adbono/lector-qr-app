@@ -111,6 +111,11 @@
           Guardar
         </button>
       </form>
+
+      @if (scanning) {
+        <app-barcode-scanner (scanSuccess)="onScanSuccess($event)"></app-barcode-scanner>
+      }
+        
     </div>
   </div>
 </div>
