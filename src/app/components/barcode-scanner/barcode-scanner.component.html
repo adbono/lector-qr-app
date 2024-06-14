@@ -1,13 +1,17 @@
 @if (hasDevices && hasPermission) {
-<div>
-  <zxing-scanner
-    [formats]="allowedFormats" 
-    (scanSuccess)="onCodeResult($event)"
-  >
-  </zxing-scanner>
+<div class="scanner-overlay">
+    <div class="scanner-header">
+        <button type="button" class="btn btn-dark close-button" aria-label="Close" (click)="closeScanner()">X</button>
+    </div>
+    <div class="scanner-content">
+        <zxing-scanner [formats]="allowedFormats" (scanSuccess)="onCodeResult($event)">
+        </zxing-scanner>
+    </div>
+    @if (!hasDevices) {
+        <p>No camera devices found.</p>
+    } 
+    @if (hasDevices && !hasPermission) {
+        <p>Camera permission is required to scan the barcode.</p>
+    } 
 </div>
-@if (!hasDevices) {
-<p>No camera devices found.</p>
-} @if (hasDevices && !hasPermission) {
-<p>Camera permission is required to scan the barcode.</p>
-} }
+}

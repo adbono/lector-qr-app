@@ -113,7 +113,7 @@
       </form>
 
       @if (scanning) {
-        <app-barcode-scanner (scanSuccess)="onScanSuccess($event)"></app-barcode-scanner>
+        <app-barcode-scanner (scanSuccess)="onScanSuccess($event)" (close)="closeScanner()"></app-barcode-scanner>
       }
         
     </div>
